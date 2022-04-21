@@ -15,8 +15,8 @@ def run_query(query):
 
 #Code to get the name of the user for the welcome title 
 def getUsersName(id): 
-    fname = run_query('Select fname FROM Reader WHERE Reader_ID = ' + id)
-    lname = run_query('Select lname FROM Reader WHERE Reader_ID = ' + id)
+    fname = run_query('Select fname FROM Librarian WHERE Staff_ID = ' + id)
+    lname = run_query('Select lname FROM Librarian WHERE Staff_ID = ' + id)
     fname = fname[0][0]
     lname = lname[0][0]
     name = str(fname) + " " + str(lname)

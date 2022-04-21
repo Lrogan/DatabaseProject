@@ -1,5 +1,4 @@
 from logging import PlaceHolder
-from ntpath import realpath
 import streamlit as st 
 import mysql.connector
 import pandas as pd
@@ -8,12 +7,15 @@ import ReaderHome
 import os
 import page_helper_function
 import ReaderTitlePage
+import LibrarianInfo
+import LibrarianHome
 
 
 
 
 
-cnx = mysql.connector.connect(user='root', database='Library Management System', password = 'nopeAdmin') 
+
+cnx = mysql.connector.connect(user='root', database='Library Management System', password = 'Madden41') 
 
 #Function definition to run read quieries
 def run_query(query):
@@ -25,6 +27,8 @@ state = page_helper_function._get_state()
 
 if state.login: 
     ReaderHome.showPage(state)
+elif state.staffLogin:
+    LibrarianHome.showPage(state)
 else:
     #Code for initial title
     loginWelcome = st.empty()
@@ -54,9 +58,10 @@ else:
         else:
             realPassword = run_query('SELECT Passwords FROM Reader WHERE Reader_ID = ' + state.userName )
             id = str(state.userName)
+            
 
-            if (len(realPassword) == 0):
-                st.error("no user found")
+            if(len(realPassword) == 0): 
+                st.error("Incorrect Username or Password")
 
             elif state.password == realPassword[0][0]: 
                 #setting initial login states back to empty
@@ -80,7 +85,7 @@ else:
             
         #checking if password is correct
         else:
-            realPassword = run_query('SELECT Passwords FROM Librarian WHERE Staff_ID = ' + state.userName )
+            realPassword = run_query('SELECT Passwords FROM Librarian WHERE Staff_ID = ' + "'" + state.userName + "'")
             if state.password == realPassword[0][0]: 
 
                 #setting initial login states back to empty
@@ -89,6 +94,9 @@ else:
                 password = password.empty()
                 readerLoginButton = readerLoginButton.empty()
                 staffLoginButton = staffLoginButton.empty()
+                state.staffLogin = True
+                LibrarianHome.showPage(state)
+                
             else: 
                 st.error("Incorrect Username or Password")
 

@@ -1,3 +1,4 @@
+from tabnanny import check
 import streamlit as st 
 import mysql.connector
 import pandas as pd
@@ -5,7 +6,11 @@ import numpy as np
 import ReaderTitlePage
 import readerInfo
 import myBooks
-import browseBooks
+import LibrarianInfo
+import LibrarianTitlePage
+import User_Checkout_Books
+import LibrarianCheckIn
+
 
 
 cnx = mysql.connector.connect(user='root', database='Library Management System', password = 'Madden41') 
@@ -19,8 +24,8 @@ def run_query(query):
 
 #Code to get the name of the user for the welcome title 
 def getUsersName(id): 
-    fname = run_query('Select fname FROM Reader WHERE Reader_ID = ' + id)
-    lname = run_query('Select lname FROM Reader WHERE Reader_ID = ' + id)
+    fname = run_query('Select fname FROM Librarian WHERE Staff_ID = ' + id)
+    lname = run_query('Select lname FROM Librarian WHERE Staff_ID = ' + id)
     fname = fname[0][0]
     lname = lname[0][0]
     name = str(fname) + " " + str(lname)
@@ -29,19 +34,21 @@ def getUsersName(id):
 
 def showPage(state): 
     # Create a page dropdown 
-    page = st.sidebar.selectbox("Select an option", ["Home", "My Information", "My Books", "Browse Books", "Logout"]) 
+    page = st.sidebar.selectbox("Select an option", ["Home", "My Information", "View User CheckOut", "Check In", "Logout"])
 
     if page == "Home":
-        ReaderTitlePage.showPage(state.userName)
+        LibrarianTitlePage.showPage(state.userName)
     elif page == "My Information":
-        readerInfo.showPage(state.userName)
-    elif page == "My Books":
-        myBooks.showPage(state.userName) 
-    elif page == "Browse Books":
-        browseBooks.showPage(state.userName) 
+        LibrarianInfo.showPage (state.userName)
+    elif page == "View User CheckOut":
+        User_Checkout_Books.showPage() 
+    elif page == "Check In":
+        st.write("HI")
     elif page == "Logout":
-        st.title("Logout") 
-        
+        st.title("Log out")
+    
+   
+    
 
     
 
