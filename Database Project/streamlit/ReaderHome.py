@@ -8,7 +8,7 @@ import myBooks
 import browseBooks
 
 
-cnx = mysql.connector.connect(user='root', database='Library Management System', password = 'Madden41') 
+cnx = mysql.connector.connect(user='root', database='Library Management System', password = 'nopeAdmin') 
 
 
 #Function definition to run read quieries
@@ -41,6 +41,7 @@ def showPage(state):
         browseBooks.showPage(state.userName) 
     elif page == "Logout":
         st.title("Logout") 
+        st.write("Refresh the Page to Complete Log Out Process")
         
 
     

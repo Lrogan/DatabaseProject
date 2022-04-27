@@ -6,13 +6,17 @@ from datetime import date
 
 
 
-cnx = mysql.connector.connect(user='root', database='Library Management System', password = 'Madden41')
+cnx = mysql.connector.connect(user='root', database='Library Management System', password = 'nopeAdmin')
 
 #Function definition to run read quieries
 def run_query(query):
-    with cnx.cursor() as cur:
-        cur.execute(query)
-        return cur.fetchall()
+    cnx = mysql.connector.connect(user='root', database='Library Management System', password = 'nopeAdmin')
+    cursor = cnx.cursor()
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    cursor.close()
+    cnx.close()
+    return rows
 
 
 def getUsersBooks(UserIDtoCheck):

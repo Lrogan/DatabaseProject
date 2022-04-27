@@ -15,7 +15,7 @@ import LibrarianHome
 
 
 
-cnx = mysql.connector.connect(user='root', database='Library Management System', password = 'Madden41') 
+cnx = mysql.connector.connect(user='root', database='Library Management System', password = 'nopeAdmin') 
 
 #Function definition to run read quieries
 def run_query(query):

@@ -81,4 +81,7 @@ SELECT *
 FROM ReaderInfoView;
 
 SELECT * 
-FROM booksView
+FROM booksView;
+
+SELECT *
+FROM CheckedOut;

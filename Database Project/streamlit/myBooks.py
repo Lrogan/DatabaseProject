@@ -1,3 +1,4 @@
+from getpass import getuser
 import streamlit as st 
 import mysql.connector
 import pandas as pd
@@ -5,13 +6,17 @@ import numpy as np
 from datetime import date, timedelta
 
 
-cnx = mysql.connector.connect(user='root', database='Library Management System', password = 'Madden41')
+
 
 #Function definition to run read quieries
 def run_query(query):
-    with cnx.cursor() as cur:
-        cur.execute(query)
-        return cur.fetchall()
+    cnx = mysql.connector.connect(user='root', database='Library Management System', password = 'nopeAdmin')
+    cursor = cnx.cursor()
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    cursor.close()
+    cnx.close()
+    return rows
 
 #Function Definition to get usesr
 def getUsersBooks(id): 
@@ -38,15 +43,14 @@ def getCurrentBalanceOwed(id, amountBooksoverDue):
     return amountDue
    
 
-                            
 
 def showPage(id):
     st.title("Books I have checked out:")
     userBooks = getUsersBooks(id)
     userBooks = pd.DataFrame(data = userBooks, columns = ['Book Title', 'ISBN','Author First Name', 'Author Last Name', 'Due Date'])
     userBooks.index = np.arange(1, len(userBooks) + 1)
-    st.dataframe(data = userBooks) 
-
+    st.dataframe(data = userBooks)
+    
     overDueCount = isOverdue(id) 
 
     if overDueCount[0][0] != 0:
@@ -54,8 +58,8 @@ def showPage(id):
         amountDue = getCurrentBalanceOwed(id, overDueCount[0][0])
         st.error("You currently owe $" + str(amountDue))
 
-        
-
+    
+    
 
 
     

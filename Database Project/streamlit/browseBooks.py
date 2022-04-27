@@ -5,7 +5,7 @@ import numpy as np
 from datetime import date, timedelta
 
 
-cnx = mysql.connector.connect(user='root', database='Library Management System', password = 'Madden41')
+cnx = mysql.connector.connect(user='root', database='Library Management System', password = 'nopeAdmin')
 
 #Function definition to run read quieries
 def run_query(query):
@@ -69,6 +69,7 @@ def showPage(id):
             today = date.today()
             dueDate = today + timedelta(days=10)
             checkoutBook(id, ISBNToCheck, dueDate, 10)
+            st.success("Book Checked Out Successfully")
 
 
             
