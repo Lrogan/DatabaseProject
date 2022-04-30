@@ -46,8 +46,6 @@ VALUES (0, 'Jim', 'Grey'), (1, 'Will', 'Smith'), (2, 'Anthony', 'Chen');
 INSERT INTO Writes 
 VALUES (0, 1234567892314), (0, 2234567232314), (2, 3223567232314);  
 
-INSERT INTO Adds 
-VALUES (0, 1234567892314), (0, 2234567232314), (0, 3223567232314); 
 
 INSERT INTO Book 
 VALUES (4234567232314, 'Bill', '1922-04-30', 'Intro to Database', 'Education', 13, 140, 4), (5234545232314, 'Amy', '2020-04-30', 'History of Michael Jordan', 'Sports', 10, 50, 2), (6234545232314, 'Julio', '2022-03-15', 'Garfield', 'Comedy', 5, 40, 1);

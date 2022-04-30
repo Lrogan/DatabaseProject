@@ -85,3 +85,20 @@ FROM booksView;
 
 SELECT *
 FROM CheckedOut;
+
+SELECT fname, lname, COUNT(*)
+FROM Reader, CheckedOut
+WHERE Reader.reader_ID = CheckedOut.reader_ID
+GROUP BY fname, lname
+HAVING COUNT(*) > 2;
+
+SELECT Book.Title, Book.ISBN, Author.fname, Author.lname, CheckedOut.DueDate 
+FROM Reader, Book, CheckedOut, Writes, Author
+WHERE Book.ISBN = CheckedOut.ISBN AND Author.Author_ID = Writes.Author_ID AND Reader.Reader_ID = CheckedOut.Reader_ID AND  Book.ISBN = Writes.ISBN and Reader.Reader_ID;
+
+SELECT Title, book.ISBN, COUNT(*)
+FROM book, writes
+WHERE book.ISBN = writes.ISBN
+GROUP BY book.ISBN
+HAVING COUNT(*) > 1;
+

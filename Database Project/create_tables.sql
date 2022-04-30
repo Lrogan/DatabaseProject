@@ -12,7 +12,7 @@
         Hours INT(3) DEFAULT 0,
         DateOFBirth DATE,
         Email VARCHAR (26),
-        Passwords VARCHAR (26),
+        Passwords VARCHAR (26) NOT NULL,
         Sex CHAR (1),
         
         PRIMARY KEY (Staff_ID)
@@ -24,7 +24,7 @@
         lname VARCHAR(30),
         DateOFBirth DATE,
         Email VARCHAR (26),
-        Passwords VARCHAR (26),
+        Passwords VARCHAR (26) NOT NULL,
         Sex CHAR (1),
         
         PRIMARY KEY (Reader_ID)
@@ -78,127 +78,3 @@
 			ON DELETE Cascade 
             ON UPDATE Cascade 
         ); 
-        
-	CREATE TABLE Adds (
-		Staff_ID VARCHAR(30) ,
-		ISBN VARCHAR(13) ,
-        
-        PRIMARY KEY (Staff_ID, ISBN), 
-        FOREIGN KEY (Staff_ID) REFERENCES Librarian(Staff_ID) 
-			ON DELETE Cascade 
-            ON UPDATE Cascade, 
-		FOREIGN KEY (ISBN) REFERENCES Book(ISBN) 
-			ON DELETE Cascade 
-            ON UPDATE Cascade 
-        ); 
-    
-
-           
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    

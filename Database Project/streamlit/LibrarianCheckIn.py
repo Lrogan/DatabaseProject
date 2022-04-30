@@ -41,7 +41,7 @@ def showPage():
 
     #User input 
     userID = st.text_input(label = "ID of user", value = '')
-    ISBNToCheckIn = st.text_input(label = "ISBN to check out", value = '') 
+    ISBNToCheckIn = st.text_input(label = "ISBN to check in", value = '') 
 
     if st.button(label = 'Check in'):
         removeCheckedOut(userID,ISBNToCheckIn)
